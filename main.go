@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/genez/unoconv-api/unoconv"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/fasthttp"
 	"io"
@@ -8,11 +9,9 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"path/filepath"
 	"os/exec"
-	"unoconv-api/unoconv"
+	"path/filepath"
 )
-
 
 func main() {
 
@@ -47,10 +46,10 @@ func main() {
 			return
 		}
 		src, err := file.Open()
-	    if err != nil {
-		return err
-	    }
-	    defer src.Close()
+		if err != nil {
+			return err
+		}
+		defer src.Close()
 
 		//create a temporary file and copy the file from the form to it
 		tempfile, err := ioutil.TempFile(os.TempDir(), "unoconv-api")
